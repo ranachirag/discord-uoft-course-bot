@@ -60,37 +60,40 @@ def scrape(course):
     return out
 
 def course_info(course):
+    if scrape(course) == []:
+        return 'Course not found'
     out = ''
-    read = scrape()
+    read = scrape(course)
     for x in range(4):
         out += read[x] + '\n'
     out += read[5]
+    return out
 
 def course_name(course):
     if scrape(course) == []:
-        return ''
+        return 'Course not found'
     return scrape(course)[0]
 
 
 def course_descrip(course):
     if scrape(course) == []:
-        return ''
+        return 'Course not found'
     return scrape(course)[1]
 
 
 def course_prereq(course):
     if scrape(course) == []:
-        return ''
+        return 'Course not found'
     return scrape(course)[2]
 
 
 def course_exclu(course):
     if scrape(course) == []:
-        return ''
+        return 'Course not found'
     return scrape(course)[3]
 
 
 def course_breadth(course):
     if scrape(course) == []:
-        return ''
+        return 'Course not found'
     return scrape(course)[4]
