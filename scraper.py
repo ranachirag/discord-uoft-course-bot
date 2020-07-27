@@ -32,19 +32,20 @@ def scrape(course):
         text_info.append(thing.text.strip())
     for thing in labels:
         text_labels.append(thing.text.strip())
-
+    print(text_info)
+    print(text_labels)
     if info != []:
         description = text_info[1]
         exclu_i = 0
-        exclu = "None"
+        exclu = "Exclusion:\nNone"
         prereq_i = 0
-        prereq = "None"
+        prereq = "Prerequisite\nNone"
         if "Prerequisite:" in text_labels:
             prereq_i = text_labels.index("Prerequisite:")
         if "Exclusion:" in text_labels:
             exclu_i = text_labels.index("Exclusion:")
         breadth_i = text_labels.index("Breadth Requirements:")
-        if prereq != 0:
+        if prereq_i != 0:
             prereq = text_labels[prereq_i] + "\n" + text_info[prereq_i+1]
         if exclu_i != 0:
             exclu = text_labels[exclu_i] + "\n" + text_info[exclu_i+1]
@@ -97,3 +98,5 @@ def course_breadth(course):
     if scrape(course) == []:
         return 'Course not found'
     return scrape(course)[4]
+
+scrape("sta130")
