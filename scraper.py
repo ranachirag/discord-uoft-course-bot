@@ -39,7 +39,9 @@ def scrape(course):
         exclu_i = 0
         exclu = "Exclusion:\nNone"
         prereq_i = 0
-        prereq = "Prerequisite\nNone"
+        prereq = "Prerequisite:\nNone"
+        coreq_i = 0
+        coreq = "Corequisite:\nNone"
         if "Prerequisite:" in text_labels:
             prereq_i = text_labels.index("Prerequisite:")
         if "Exclusion:" in text_labels:
@@ -50,6 +52,12 @@ def scrape(course):
         if exclu_i != 0:
             exclu = text_labels[exclu_i] + "\n" + text_info[exclu_i+1]
         breadth = text_labels[breadth_i] + "\n" + text_info[breadth_i+1]
+        if "Corequisite:" in text_labels:
+            coreq_i = text_labels.index("Corequisite:")
+        if coreq_i != 0:
+            coreq = text_labels[coreq_i] + "\n" + text_info[coreq_i+1]
+            if prereq_i != 0:
+                prereq += "\n" + coreq
 
         out.append(description)
         out.append(prereq)
@@ -66,7 +74,7 @@ def course_info(course):
     out = ''
     read = scrape(course)
     for x in range(4):
-        out += read[x] + '\n'
+        out += read[x] + '\n\n'
     out += read[4]
     return out
 
