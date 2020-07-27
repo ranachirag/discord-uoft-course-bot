@@ -66,7 +66,7 @@ def course_info(course):
     read = scrape(course)
     for x in range(4):
         out += read[x] + '\n'
-    out += read[5]
+    out += read[4]
     return out
 
 def course_name(course):
