@@ -21,4 +21,9 @@ async def on_ready():
         f'{guild.name}(id: {guild.id})'
     )
 
+@client.command(name='find', help='Gives an overview of the course requested')
+async def ind(ctx, course):
+    response = course
+    await ctx.send(response)
+
 client.run(TOKEN)
