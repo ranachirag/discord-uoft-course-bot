@@ -24,7 +24,7 @@ async def on_ready():
 
 @client.command(name='find', help='Gives an overview of the course requested')
 async def ind(ctx, course):
-    response = scraper.scrape(course)
+    response = scraper.course_info(course)
     await ctx.send(response)
 
 client.run(TOKEN)
