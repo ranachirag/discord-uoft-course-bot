@@ -15,11 +15,11 @@ def scrape(course):
     namey = soupy.find(id='page-title')
     nameh = souph.find(id='page-title')
     if nameh.text.strip() != "Sorry, this course is not in the current Calendar.":
-        out.append(nameh)
+        out.append(nameh.text.strip())
         info = souph.find_all("div", class_="field-items")
         labels = souph.find_all("div", class_="field-label")
     elif namey.text.strip() != "Sorry, this course is not in the current Calendar.":
-        out.append(namey)
+        out.append(namey.text.strip())
         info = soupy.find_all("div", class_="field-items")
         labels = soupy.find_all("div", class_="field-label")
     else:
@@ -36,7 +36,7 @@ def scrape(course):
     if info != []:
         description = text_info[1]
         exclu_i = 0
-        exclu = ""
+        exclu = "None"
         prereq_i = text_labels.index("Prerequisite:")
         if "Exclusion:" in text_labels:
             exclu_i = text_labels.index("Exclusion:")
@@ -78,10 +78,7 @@ def course_prereq(course):
 def course_exclu(course):
     if scrape(course) == []:
         return ''
-    out = scrape(course)[3]
-    if out == '':
-        return 'Exclusion:\nNone'
-    return out
+    return scrape(course)[3]
 
 
 def course_breadth(course):
