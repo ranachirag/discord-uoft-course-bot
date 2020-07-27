@@ -3,6 +3,7 @@ import os
 import discord
 from dotenv import load_dotenv
 from discord.ext import commands
+import scraper
 
 load_dotenv(dotenv_path='.env')
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -23,7 +24,7 @@ async def on_ready():
 
 @client.command(name='find', help='Gives an overview of the course requested')
 async def ind(ctx, course):
-    response = course
+    response = scraper.scrape(course)
     await ctx.send(response)
 
 client.run(TOKEN)
