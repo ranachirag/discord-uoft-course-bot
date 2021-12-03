@@ -81,16 +81,17 @@ def scrape(course: str) -> List[str]:
     if "Corequisite" in text_labels:
         coreq_i = text_labels.index("Corequisite")
         coreq = text_labels[coreq_i] + ": \n" + text_info[coreq_i + 1]
-        if out[2] is None:
-            out[2] = coreq
-        else:
-            out[2] = coreq + "\n\n" + out[2]
+        out.append(coreq)
+    else:
+        out.append(None)
+
     if "Exclusion" in text_labels:
         exclu_i = text_labels.index("Exclusion")
         exclu = text_labels[exclu_i] + ": \n" + text_info[exclu_i + 1]
         out.append(exclu)
     else:
         out.append(None)
+
     if "Breadth Requirements" in text_labels:
         breadth_i = text_labels.index("Breadth Requirements")
         breadth = text_labels[breadth_i] + ": \n" + text_info[breadth_i]

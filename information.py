@@ -42,6 +42,15 @@ def course_prereq(course: str) -> str:
         return 'Prerequisites: None'
     return info[2]
 
+def course_coreq(course: str) -> str:
+    info = scrape(course)
+    if info == []:
+        return 'Course not found'
+    elif len(info) == 1:
+        return ''.join(info)
+    elif info[3] is None:
+        return 'Corequisites: None'
+    return info[3]
 
 def course_exclu(course: str) -> str:
     info = scrape(course)
@@ -49,9 +58,9 @@ def course_exclu(course: str) -> str:
         return 'Course not found'
     elif len(info) == 1:
         return ''.join(info)
-    elif info[3] is None:
+    elif info[4] is None:
         return 'Exclusion: None'
-    return info[3]
+    return info[4]
 
 
 def course_breadth(course: str) -> str:
@@ -60,9 +69,9 @@ def course_breadth(course: str) -> str:
         return 'Course not found'
     elif len(info) == 1:
         return ''.join(info)
-    elif info[2] is None:
+    elif info[5] is None:
         return 'Breadth Requirements: None'
-    return info[4]
+    return info[5]
 
 
 def course_link(course: str) -> str:
@@ -71,7 +80,7 @@ def course_link(course: str) -> str:
         return 'Course not found'
     elif len(info) == 1:
         return ''.join(info)
-    return info[5]
+    return info[6]
 
 
 def _needed_in_check(course: str, code: str, letter: str, n: int, show_details=True) -> List[str]:

@@ -32,6 +32,11 @@ async def prereq(ctx, course):
     response = information.course_prereq(course)
     await ctx.send(response)
 
+@client.command(name='coreq', help='Gives corequisites of course requested')
+async def prereq(ctx, course):
+    response = information.course_coreq(course)
+    await ctx.send(response)
+
 @client.command(name='name', help='Gives name of course requested')
 async def name(ctx, course):
     response = information.course_name(course)
